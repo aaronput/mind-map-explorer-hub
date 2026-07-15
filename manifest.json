@@ -1,0 +1,32 @@
+{
+  "updated": "2026-07-08",
+  "note": "Static manifest; a future sync_all.sh will regenerate this with real refresh timestamps.",
+  "mindmaps": [
+    {
+      "name": "Chartbook",
+      "author": "Adam Tooze",
+      "tagline": "Economic history & the present",
+      "url": "https://mind-map-explorer-chartbook.vercel.app",
+      "source": "https://adamtooze.substack.com/",
+      "repo": "https://github.com/aaronput/mind-map-explorer-chartbook",
+      "post_count": 1664,
+      "concept_count": 84,
+      "refreshed_at": "2026-07-08",
+      "beat": "Central banks · geopolitics · energy · climate · history",
+      "accent": "#f28e2b"
+    },
+    {
+      "name": "Navnoor Bawa",
+      "author": "Navnoor Bawa",
+      "tagline": "Quantitative researcher",
+      "url": "https://mind-map-explorer-navnoor-bawa.vercel.app",
+      "source": "https://navnoorbawa.substack.com/",
+      "repo": "https://github.com/aaronput/mind-map-explorer-navnoor-bawa",
+      "post_count": 222,
+      "concept_count": 77,
+      "refreshed_at": "2026-07-06",
+      "beat": "Hedge fund alpha · quant methods · microstructure · vol",
+      "accent": "#4e79a7"
+    }
+  ]
+}
