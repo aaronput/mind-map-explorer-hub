@@ -17,6 +17,20 @@
       "accent": "#f28e2b"
     },
     {
+      "name": "Moontower",
+      "kind": "mind_map",
+      "author": "Kris Abdelmessih",
+      "tagline": "Options, vol & clear thinking",
+      "url": "https://mind-map-explorer-moontower.vercel.app",
+      "source": "https://moontower.substack.com/",
+      "repo": "https://github.com/aaronput/mind-map-explorer-moontower",
+      "post_count": 1554,
+      "concept_count": 55,
+      "refreshed_at": "2026-07-16",
+      "beat": "Options · vol · Greeks · execution · trading psychology",
+      "accent": "#59a14f"
+    },
+    {
       "name": "Navnoor Bawa",
       "kind": "mind_map",
       "author": "Navnoor Bawa",
