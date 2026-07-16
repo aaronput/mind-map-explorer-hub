@@ -15,6 +15,12 @@ export PATH="/opt/homebrew/bin:/opt/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/
 MAPS=(
   "$HOME/Desktop/MindMapExplorer_NavnoorBawa"
   "$HOME/Desktop/MindMapExplorer_AdamTooze"
+  "$HOME/Desktop/MindMapExplorer_Moontower"
+)
+# Knowledge bases: static HTML, no refresh.sh — updated only when their
+# repos change. Their refreshed_at is still pulled from git in regen_manifest.py.
+KB_ONLY=(
+  "$HOME/Desktop/MindMapExplorer_TaxArb"
 )
 
 HUB="$HOME/Desktop/MindMapsHub"

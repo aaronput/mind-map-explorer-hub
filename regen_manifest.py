@@ -16,8 +16,10 @@ INDEX     = HUB / "index.html"
 
 # Map manifest entry name → local repo path (where data.json + git live)
 LOCAL_PATHS = {
-    "Chartbook":    Path.home() / "Desktop" / "MindMapExplorer_AdamTooze",
-    "Navnoor Bawa": Path.home() / "Desktop" / "MindMapExplorer_NavnoorBawa",
+    "Chartbook":         Path.home() / "Desktop" / "MindMapExplorer_AdamTooze",
+    "Navnoor Bawa":      Path.home() / "Desktop" / "MindMapExplorer_NavnoorBawa",
+    "Moontower":         Path.home() / "Desktop" / "MindMapExplorer_Moontower",
+    "Derivative Tax Arb":Path.home() / "Desktop" / "MindMapExplorer_TaxArb",
 }
 
 def last_commit_date(repo_path):
@@ -45,13 +47,24 @@ for entry in manifest["mindmaps"]:
     if not local:
         print(f"  ⚠ no local path mapping for '{entry['name']}' — leaving stats untouched")
         continue
+    # Every entry gets a fresh refreshed_at from git log (works with or without data.json).
+    entry["refreshed_at"] = last_commit_date(local)
+
+    kind = entry.get("kind", "mind_map")
+    if kind == "knowledge_base":
+        # Knowledge bases are hand-curated static HTML — no data.json.
+        # node_count is manually maintained in the manifest; refreshed_at
+        # is refreshed from the git log above.
+        print(f"  ✓ {entry['name']} [KB]: {entry.get('node_count','?')} nodes, refreshed {entry['refreshed_at']}")
+        continue
+
+    # mind_map: pull post/concept counts from the scraped data.json.
     data = load_data_json(local)
     if not data:
         print(f"  ⚠ no data.json at {local} — leaving stats untouched")
         continue
     entry["post_count"]    = data["publication"]["post_count"]
     entry["concept_count"] = len(data["concepts"])
-    entry["refreshed_at"]  = last_commit_date(local)
     print(f"  ✓ {entry['name']}: {entry['post_count']} posts, {entry['concept_count']} concepts, refreshed {entry['refreshed_at']}")
 
 # Write standalone manifest.json
