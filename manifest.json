@@ -69,6 +69,19 @@
       "refreshed_at": "2026-07-17",
       "beat": "ML for alpha · portfolio construction · risk · trees · nets · ensembles",
       "accent": "#9b8ad6"
+    },
+    {
+      "name": "RL for Finance",
+      "kind": "knowledge_base",
+      "author": "Aaron Puthan",
+      "tagline": "Hand-curated knowledge base",
+      "url": "https://mind-map-explorer-rl-finance.vercel.app",
+      "source": "https://cme241.github.io/",
+      "repo": "https://github.com/aaronput/mind-map-explorer-rl-finance",
+      "node_count": 71,
+      "refreshed_at": "2026-07-17",
+      "beat": "MDPs · dynamic programming · Merton · optimal stopping · execution · market-making",
+      "accent": "#5fb0d4"
     }
   ]
 }

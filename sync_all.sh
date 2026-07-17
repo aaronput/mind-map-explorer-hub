@@ -22,6 +22,7 @@ MAPS=(
 KB_ONLY=(
   "$HOME/Desktop/MindMapExplorer_TaxArb"
   "$HOME/Desktop/MindMapExplorer_QuantML"
+  "$HOME/Desktop/MindMapExplorer_RLFinance"
 )
 
 HUB="$HOME/Desktop/MindMapsHub"
