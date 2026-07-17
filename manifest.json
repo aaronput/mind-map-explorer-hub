@@ -56,6 +56,19 @@
       "refreshed_at": "2026-07-16",
       "beat": "Derivative tax arbitrage · structures · optionality · basis",
       "accent": "#c4a45a"
+    },
+    {
+      "name": "ML for Quant Finance",
+      "kind": "knowledge_base",
+      "author": "Aaron Puthan",
+      "tagline": "Hand-curated knowledge base",
+      "url": "https://mind-map-explorer-quant-ml.vercel.app",
+      "source": null,
+      "repo": "https://github.com/aaronput/mind-map-explorer-quant-ml",
+      "node_count": 72,
+      "refreshed_at": "2026-07-17",
+      "beat": "ML for alpha · portfolio construction · risk · trees · nets · ensembles",
+      "accent": "#9b8ad6"
     }
   ]
 }

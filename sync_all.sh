@@ -21,6 +21,7 @@ MAPS=(
 # repos change. Their refreshed_at is still pulled from git in regen_manifest.py.
 KB_ONLY=(
   "$HOME/Desktop/MindMapExplorer_TaxArb"
+  "$HOME/Desktop/MindMapExplorer_QuantML"
 )
 
 HUB="$HOME/Desktop/MindMapsHub"

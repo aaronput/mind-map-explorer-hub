@@ -20,6 +20,7 @@ LOCAL_PATHS = {
     "Navnoor Bawa":      Path.home() / "Desktop" / "MindMapExplorer_NavnoorBawa",
     "Moontower":         Path.home() / "Desktop" / "MindMapExplorer_Moontower",
     "Derivative Tax Arb":Path.home() / "Desktop" / "MindMapExplorer_TaxArb",
+    "ML for Quant Finance":Path.home() / "Desktop" / "MindMapExplorer_QuantML",
 }
 
 def last_commit_date(repo_path):
