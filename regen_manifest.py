@@ -21,6 +21,7 @@ LOCAL_PATHS = {
     "Moontower":         Path.home() / "Desktop" / "MindMapExplorer_Moontower",
     "Derivative Tax Arb":Path.home() / "Desktop" / "MindMapExplorer_TaxArb",
     "ML for Quant Finance":Path.home() / "Desktop" / "MindMapExplorer_QuantML",
+    "Mathematics of Data Science":Path.home() / "Desktop" / "MindMapExplorer_MathDataScience",
     "RL for Finance":    Path.home() / "Desktop" / "MindMapExplorer_RLFinance",
 }
 
