@@ -17,9 +17,10 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Clone map repos where regen_manifest.py expects them
+        env: { GIT_TERMINAL_PROMPT: "0" }
         run: |
           export HOME="$RUNNER_TEMP/home"; mkdir -p "$HOME/Desktop"; cd "$HOME/Desktop"
-          clone(){ git clone -q "https://github.com/aaronput/$1" "$2"; }
+          clone(){ git clone -q "https://github.com/aaronput/$1" "$2" || echo "skip $1 (private or missing) - its manifest entry is left as is"; }
           clone mind-map-explorer-chartbook         MindMapExplorer_AdamTooze
           clone mind-map-explorer-navnoor-bawa      MindMapExplorer_NavnoorBawa
           clone mind-map-explorer-moontower         MindMapExplorer_Moontower
@@ -29,8 +30,15 @@ jobs:
           clone mind-map-explorer-rl-finance        MindMapExplorer_RLFinance
       - name: Regenerate manifest and push
         run: |
-          # refreshed_at = last commit that touched the content, not any commit
-          sed -i 's|"--format=%cs"\]|"--format=%cs", "--", "data.json", "index.html"]|' regen_manifest.py
+          # Runtime-only tweaks: date = last commit touching content; keep old date if a repo is unavailable.
+          python3 - <<'PY'
+          import pathlib
+          p = pathlib.Path("regen_manifest.py"); s = p.read_text()
+          s = s.replace('"--format=%cs"]', '"--format=%cs", "--", "data.json", "index.html"]')
+          s = s.replace('entry["refreshed_at"] = last_commit_date(local)',
+                        'd = last_commit_date(local)\n    if d != "—": entry["refreshed_at"] = d')
+          p.write_text(s)
+          PY
           HOME="$RUNNER_TEMP/home" python3 regen_manifest.py
           git checkout -- regen_manifest.py
           git config user.name  "mindmap-bot"
