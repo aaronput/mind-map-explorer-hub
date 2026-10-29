@@ -1,0 +1,41 @@
+# Daily: rebuild the hub manifest (counts + last-refreshed dates) from every map repo.
+name: Daily hub sync
+on:
+  schedule:
+    - cron: "45 10 * * *"       # 06:45 New York (EDT)
+  workflow_dispatch:
+  push:
+    paths: [".github/workflows/sync.yml"]
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Clone map repos where regen_manifest.py expects them
+        run: |
+          export HOME="$RUNNER_TEMP/home"; mkdir -p "$HOME/Desktop"; cd "$HOME/Desktop"
+          clone(){ git clone -q "https://github.com/aaronput/$1" "$2"; }
+          clone mind-map-explorer-chartbook         MindMapExplorer_AdamTooze
+          clone mind-map-explorer-navnoor-bawa      MindMapExplorer_NavnoorBawa
+          clone mind-map-explorer-moontower         MindMapExplorer_Moontower
+          clone mind-map-explorer-tax-arb           MindMapExplorer_TaxArb
+          clone mind-map-explorer-quant-ml          MindMapExplorer_QuantML
+          clone mind-map-explorer-math-data-science MindMapExplorer_MathDataScience
+          clone mind-map-explorer-rl-finance        MindMapExplorer_RLFinance
+      - name: Regenerate manifest and push
+        run: |
+          # refreshed_at = last commit that touched the content, not any commit
+          sed -i 's|"--format=%cs"\]|"--format=%cs", "--", "data.json", "index.html"]|' regen_manifest.py
+          HOME="$RUNNER_TEMP/home" python3 regen_manifest.py
+          git checkout -- regen_manifest.py
+          git config user.name  "mindmap-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add manifest.json index.html
+          git diff --cached --quiet && { echo "no changes"; exit 0; }
+          git commit -m "sync: refresh manifest $(date -u +%Y-%m-%d)"
+          git push
